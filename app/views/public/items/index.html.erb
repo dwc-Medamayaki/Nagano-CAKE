@@ -1,2 +1,24 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+
+<div class="container">
+    <div class="row">
+        <div class="col-3 mt-5 side-ber">
+           <%= render 'genres' %>
+        </div>
+        <div class="col-8 mt-5">
+            <h3>商品一覧</h3>
+            <div class="container">
+                <div class="row">
+                    <% @items.each do |item| %>
+                    <div class="col-3 d-flex align-content-around flex-wrap">
+                        <div>
+                             <%= image_tag 'no_image', size: "150x130" %>
+                        </div>
+                        <p>%= item.name %></p>
+                        <p>%= item.plice %></p>
+                    </div>
+                    <%end%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
