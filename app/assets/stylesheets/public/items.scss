@@ -1,3 +1,29 @@
 // Place all the styles related to the public/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// index欄
+.row{
+    background:#f6efdb;
+}
+
+
+
+// ジャンル検索欄
+table {
+    border-collapse: collapse;
+    background-image: linear-gradient(40deg, #c3dcbe 0%, #bad4d1 74%);
+}
+
+thead, tbody {
+    border: solid 1px black;
+}
+table tr{
+    margin:15px;
+}
+
+table th,table td{
+    display:block;
+    margin: 15px;
+    text-align: center;
+}
