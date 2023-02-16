@@ -1,49 +1,40 @@
 Rails.application.routes.draw do
   namespace :admin do
-    get 'orders/show'
+    root to: 'homes#top'
+
+    resources :items, except: [:destroy]
+
+    resources :genres, only: [:index, :create, :edit, :update]
+
+    resources :customers, only: [:index, :show, :edit, :update]
+
+    resources :orders, only: [:show, :update]
+
+    resources :order_items, only: [:update]
   end
-  namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-  end
-  namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'addresses/index'
-    get 'addresses/edit'
-  end
-  namespace :public do
-    get 'orders/new'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :public do
-    get 'cart_items/index'
-  end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/unsubscribe'
-  end
-  namespace :public do
-    get 'items/index'
-    get 'items/show'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
+
+  scope module: :public do
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
+
+    resources :items, only: [:index, :show]
+
+    get '/customers/my_page' => 'customers#show', as: 'my_page'
+    get '/customers/information/edit' => 'customers#edit', as: 'edit_my_page'
+    patch '/customers/information' => 'customers#update'
+    get '/customers/unsubscribe' => 'customers#unsubscribe'
+    patch '/customers/is_deleted' => 'customers/is_deleted'
+
+    resources :cart_items, only: [:index, :update, :create, :destroy] do
+      delete '/cart_items/destroy_all' => 'cart_items/destroy_all'
+    end
+
+    resources :orders, only: [:new, :create, :index, :show] do
+      get '/orders/confirm' => 'orders#confirm'
+      get '/orders;complete' => 'orders#complete'
+    end
+
+    resources :addresses, except: [:new, :show]
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
