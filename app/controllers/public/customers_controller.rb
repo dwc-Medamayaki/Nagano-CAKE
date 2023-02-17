@@ -18,6 +18,14 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
   end
 
+  def is_deleted
+    if @customer.update(customer_params)
+      redirect_to root_path, notice: "You are deleted successfully."
+    else
+      render "unsubscribe"
+    end
+  end
+
   private
 
   def set_customer
@@ -25,7 +33,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number, :email)
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :post_code, :address, :telephone_number, :email, :is_deleted)
   end
   
 end
