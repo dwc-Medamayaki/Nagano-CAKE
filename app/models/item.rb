@@ -15,4 +15,8 @@ class Item < ApplicationRecord
   def get_image
     (image.attached?) ? image : 'rails_image.png'
   end
+
+  def tax_price
+    (self.price * 1.10).round
+  end
 end
