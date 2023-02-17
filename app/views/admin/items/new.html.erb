@@ -1,4 +1,5 @@
 <h2>商品新規登録</h2>
+<%= render 'admin/shared/error_messages', resource: @item %>
 <% form_with model: @item do |f| %>
   <div class="form-group">
     <label for="inputImage">商品画像</label>
