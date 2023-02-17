@@ -4,6 +4,14 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_one_attached :image
 
+  with_options presence: true do
+    validates :item_genre_id
+    validates :item_name
+    validates :item_detail
+    validates :price
+    validates :status
+  end
+
   def get_image
     (image.attached?) ? image : 'rails_image.png'
   end
