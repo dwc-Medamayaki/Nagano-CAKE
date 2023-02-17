@@ -4,9 +4,9 @@
     <div class="row">
         <%= form_with medel:@genre, local:true do |f| %>
          <table>
-            <td><p>ジャンル名</p></td>
             <td>
               <div class="form-group">
+                 <%= f.label :name, "ジャンル名" %>
               <%= f.text_field :name, clas: 'form-control' %>
               </div>
             </td>
