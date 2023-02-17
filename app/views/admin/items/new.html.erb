@@ -1,5 +1,10 @@
 <h2>商品新規登録</h2>
+<<<<<<< HEAD
 <%= form_with model: @item do |f| %>
+=======
+<%= render 'admin/shared/error_messages', resource: @item %>
+<% form_with model: @item do |f| %>
+>>>>>>> 07173834d0a6a4ae67d67e8ef2e157a7b3661572
   <div class="form-group">
     <label for="inputImage">商品画像</label>
     <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
