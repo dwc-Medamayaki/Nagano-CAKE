@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
+    genre = Genre.name
   end
 
   def new
@@ -12,7 +13,7 @@ class Admin::ItemsController < ApplicationController
     if @item.save
       redirect_to admin_item_path(@item), notice: "登録に成功しました"
     else
-      render :index
+      render :new
     end
   end
 
@@ -36,7 +37,7 @@ class Admin::ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_sale)
+    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_sale, :image)
   end
 
 end
