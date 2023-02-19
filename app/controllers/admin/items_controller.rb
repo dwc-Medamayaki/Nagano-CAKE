@@ -1,6 +1,7 @@
 class Admin::ItemsController < ApplicationController
   def index
     @items = Item.all
+    genre = Genre.name
   end
 
   def new
@@ -10,23 +11,33 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] = "登録に成功しました"
-      redirect_to admin_item_path(@item)
+      redirect_to admin_item_path(@item), notice: "登録に成功しました"
     else
-      render :index
+      render :new
     end
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item), notice: "変更に成功しました"
+    else
+      render :edit
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_sale)
+    params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_sale, :image)
   end
 
 end
