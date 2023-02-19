@@ -14,11 +14,9 @@
               <td><%= f.text_field :location, class:"form-control" %></td>  
             </tr>
             <tr class="form-group">
-               <td><%= label :name,"宛名" %></td>
-                  <td><%= f.text_field :name, class:"form-control" %></td> 
-                <td>
-                   <%= f.submit "新規登録", class: 'btn btn-success'%>
-                </td>
+              <td><%= label :name,"宛名" %></td>
+              <td><%= f.text_field :name, class:"form-control" %></td> 
+              <td><%= f.submit "新規登録", class: 'btn btn-success'%></td>
             </tr>
         </table>
         <%end%>
@@ -40,7 +38,7 @@
                     <td><%= address.location %></td>
                     <td><%= address.name %></td>
                     <td>
-                        <%= link_to "編集する", edit_address_path(current_customer), class:"btn btn-success" %>
+                        <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-success" %>
                     </td>
                     <td><%= link_to "削除する", address, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
                 </tr>

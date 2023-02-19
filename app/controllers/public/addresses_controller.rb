@@ -1,6 +1,7 @@
 class Public::AddressesController < ApplicationController
   def index
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: current_customer)
+    
     @address = Address.new
   end
   
@@ -12,8 +13,17 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
+    @address = Address.find(params[:id])
   end
   
+  def update
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      redirect_to addresses_path, notice: "変更に成功しました"
+    else
+      render :edit
+    end
+  end
   
   private
   
