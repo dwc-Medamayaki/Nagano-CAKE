@@ -1,2 +1,20 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="search">
+  <!--ジャンル検索機能をここに-->
+</div>
+<div class="item">
+  <div class="image">
+    <%= image_tag @item.get_image, size: '300x200' %>
+  </div>
+  <div class="status">
+    <b><%= @item.name %></b>
+    <%= @item.introduction %>
+    <br>
+    <b>¥<%= @item.tax_price.to_s(:delimited) %></b><small><small>（税込）</small></small>
+  </div>
+  <div class="add_cart">
+    <%= form_with model: @cart_item do |f| %>
+      <%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'], :include_blank =>'　個数選択　' %>
+      <%= f.submit "カートに入れる", class:'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
