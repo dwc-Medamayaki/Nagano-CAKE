@@ -1,2 +1,36 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container ml-5">
+  <div class="row">
+    <div class="col-md-2">
+      <%= render 'genre_search',genres: @genres %>
+    </div>
+
+    <div class="col-md-10">
+      <p class="row border">ようこそ、ながのCAKEへ!<br>
+                            このサイトは、ケーキ販売のECサイトになります<br>
+                            会員でない方も商品の閲覧はできますが<br>
+                            購入には会員登録が必要になります。
+      </p>
+      <h2>新着商品</h2>
+      <div class="row">
+        <% @new_item.each do |item| %>
+          <div class="col-md-3">
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_image, size:'100x100' %>
+          <% end %>
+            <br>
+            <%= item.name %><br>
+            ￥<%= item.price %>
+          </div>>
+        <% end %>
+      </div>
+      </div class="row text-right">
+       <div class="offset-9 col-3">
+        <%= link_to items_path do %>
+         すべての商品を見る>
+        <% end %>
+       </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
