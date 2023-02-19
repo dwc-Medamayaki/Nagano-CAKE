@@ -1,11 +1,11 @@
 class Public::AddressesController < ApplicationController
   def index
-    @addresses= Address.all
-    @address=Address.new
+    @addresses = Address.all
+    @address = Address.new
   end
   
   def create
-    @address= Address.new(address_params)
+    @address = Address.new(address_params)
     @address.save
     redirect_to request.referer
    
@@ -18,6 +18,9 @@ class Public::AddressesController < ApplicationController
   private
   
   def address_params
-      params.permit(:post_code,:location,:name) 
+      params.require(:address).permit(:customer_id,:post_code,:location,:name) 
   end
+  
+#
+  
 end

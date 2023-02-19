@@ -2,8 +2,9 @@
     <h2>配送先登録/一覧</h2>
     <div class="row">
         <div class="col-8">
-        <%= form_with medel:@address, local: true do |f| %>
+        <%= form_with model: @address, local: true do |f| %>
         <table>
+            <%= f.hidden_field :customer_id, :value => current_customer.id %>
             <tr class="form-group">
                 <td><%= label :post_code,"郵便番号(ハイフンなし)" %></td>
                 <td><%= f.text_field :post_code, class:"form-control" %></td>
@@ -35,11 +36,11 @@
             <tbody>
                 <% @addresses.each do |address| %>
                 <tr>
-                    <td><%= label address.post_code %></td>
-                    <td><%= label address.address %></td>
-                    <td><%= label address.name %></td>
+                    <td><%= address.post_code %></td>
+                    <td><%= address.location %></td>
+                    <td><%= address.name %></td>
                     <td>
-                        <%= link_to "編集する", edit_address_path(customer), class:"btn btn-success" %>
+                        <%= link_to "編集する", edit_address_path(current_customer), class:"btn btn-success" %>
                     </td>
                     <td><%= link_to "削除する", address, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
                 </tr>
