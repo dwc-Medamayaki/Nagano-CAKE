@@ -48,7 +48,7 @@
     <div class="row">
       <p class="col-md-3">郵便番号(ハイフンなし)</p>
       <div class="field col-md-9">
-        <%= f.number_field :post_code, required: true, autocomplete: "post_code" %>
+        <%= f.text_field :post_code, required: true, autocomplete: "post_code" %>
       </div>
     </div>
 
@@ -62,7 +62,7 @@
     <div class="row">
       <p class="col-md-3">電話番号(ハイフンなし)</p>
       <div class="field col-md-9">
-        <%= f.number_field :telephone_number, required: true, autocomplete: "telephone_number" %>
+        <%= f.text_field :telephone_number, required: true, autocomplete: "telephone_number" %>
       </div>
     </div>
 
