@@ -1,16 +1,15 @@
 <div class="container ml-5">
   <h1>注文情報入力</h1>
 
-  <%= form_with model: @order, orders_confirm_path, method: :get,  do |f| %>
-
+  <%= form_with model: @order, url: orders_confirm_path, method: :get do |f| %>
     <div class="row">
       <p class="col-md-3">支払方法</p>
     </div>
     <div class="row">
       <div class="field col-md-9" >
-        <%= f.radio_button :pay_method, value: 0 %>
+        <%= f.radio_button :pay_method, "credit_card" %>
         <%= f.label :pay_method, "クレジットカード" %><br>
-        <%= f.radio_button :pay_method, value: 1 %>
+        <%= f.radio_button :pay_method, "transfar" %>
         <%= f.label :pay_method, "銀行振込" %>
       </div>
     </div>
@@ -22,7 +21,7 @@
       <div class="field col-md-9" >
         
         <%= f.radio_button :address_option, 0, checked: true %>
-        <%= f.label :send_address, "ご自身の住所" %><br>
+        ご自身の住所<br>
         <%= current_customer.post_code %><br>
         <%= current_customer.address %><br>
         <%= current_customer.full_name %><br>
@@ -33,8 +32,8 @@
         
         <%= f.radio_button :address_option, 2 %>
         <%= f.label :order_address, "新しいお届け先" %><br>
-        <%= f.label :send_post_cod, "郵便番号" %>
-        <%= f.text_field :send_post_cod %><br>
+        <%= f.label :send_post_code, "郵便番号" %>
+        <%= f.text_field :send_post_code %><br>
         <%= f.label :send_address, "住所" %>
         <%= f.text_field :send_address %><br>
         <%= f.label :send_name, "宛名" %>
