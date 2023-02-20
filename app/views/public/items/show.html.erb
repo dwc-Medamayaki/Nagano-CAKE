@@ -11,12 +11,16 @@
     <br>
     <b>¥<%= @item.tax_price.to_s(:delimited) %></b><small><small>（税込）</small></small>
   </div>
-  <div class="add_cart">
-    <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-      <%= f.hidden_field :item_id, :value => @item.id %>
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
-      <%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'], :include_blank =>'　個数選択　' %>
-      <%= f.submit "カートに入れる", class:'btn btn-success' %>
+    <% if @item.is_sale? %>
+      <div class="add_cart">
+        <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'], :include_blank =>'　個数選択　' %>
+          <%= f.submit "カートに入れる", class:'btn btn-success' %>
+        <% end %>
+    <% else %>
+      <P class="text-light btn btn-danger">売り切れ</P>
     <% end %>
   </div>
 </div>
