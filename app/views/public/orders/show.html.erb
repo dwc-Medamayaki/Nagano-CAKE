@@ -1,2 +1,68 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+    <h2>注文履歴詳細</h2>
+    <div class="row">
+        <div class="col-7">
+            <h5>注文情報</h5>
+            <table>
+                <tr>
+                    <td>注文日</td>
+                    <td><%= @order.created_at %></td>
+                </tr>
+                <tr>
+                    <td>配送先</td>
+                    <td>〒<%= order.send_post_code %></br>
+                         <%= order.send_address%></br>
+                         <%= order.send_name %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>支払方法</td>
+                    <td><%= order.pay_method %></td>
+                </tr>
+                <tr>
+                    <td>ステータス</td>
+                    <td><%= order.status %></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-5">
+            <h5>請求情報</h5>
+            <table>
+                <tr>
+                    <td>商品合計</td>
+                    <td><%= order.total_payment %></td>
+                </tr>
+                <tr>
+                    <td>配送料</td>
+                    <td><%= postage %></td>
+                </tr>
+                <tr>
+                    <td>ご請求額</td>
+                    <td><%= @total %></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <table>
+                <thead>
+                    <th>商品</th>
+                    <th>単価（税込）</th>
+                    <th>個数</th>
+                    <th>小計</th>
+                </thead>
+                <tbody>
+                    <% @orders.each do |order| %>
+                    <tr>
+                        <td><%= order.item.name %></td>
+                        <td><%= order.item.price %></td>
+                        <td><%= order.order_item.quantity %></td>
+                        <td><%= @item_total %></td>
+                    </tr>
+                  <%end%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
