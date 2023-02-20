@@ -23,11 +23,10 @@ Rails.application.routes.draw do
     get '/customers/information/edit' => 'customers#edit', as: 'edit_my_page'
     patch '/customers/information' => 'customers#update'
     get '/customers/unsubscribe' => 'customers#unsubscribe'
-    patch '/customers/is_deleted' => 'customers/is_deleted'
-
+    patch '/customers/is_deleted' => 'customers#is_deleted'
+    
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :create, :destroy]
-    delete '/cart_items/destroy_all' => 'cart_items/destroy_all'
-
 
     resources :orders, only: [:new, :create, :index, :show] do
       get '/orders/confirm' => 'orders#confirm'

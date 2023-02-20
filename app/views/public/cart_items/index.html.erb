@@ -23,6 +23,8 @@
             <td><%= item.item.tax_price %></td>
             <td>
               <%= form_with model: item, url: cart_item_path(item.id) do |f| %>
+                <%= f.hidden_field :item_id, :value => item.item_id %>
+                <%= f.hidden_field :customer_id, :value => current_customer.id %>
                 <%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'] , selected: item.quantity %>
                 <%= f.submit "変更", class:'btn btn-success' %>
               <% end %>

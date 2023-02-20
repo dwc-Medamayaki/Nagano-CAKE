@@ -23,7 +23,30 @@ class Public::CartItemsController < ApplicationController
     end
   end
 
+  def update
+    @cart_item = CartItem.find(params[:id]) 
+    if @cart_item.update(cart_item_params)
+      redirect_to cart_items_path, notice: "You have update item successfully."
+    else
+      render "index"
+    end
+  end
+
+  def destroy
+    @cart_item = CartItem.find(params[:id]) 
+    if @cart_item.destroy
+    redirect_to cart_items_path
+    else
+      render "index"
+    end
+  end
+
   def destroy_all
+    if CartItem.where(customer_id: current_customer).destroy_all
+    redirect_to cart_items_path
+    else
+      render "index"
+    end
   end
   
   private
