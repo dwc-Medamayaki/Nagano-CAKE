@@ -1,7 +1,7 @@
 <div class="container">
     <h2>配送先登録/一覧</h2>
     <div class="row">
-        <div class="col-8">
+        <div class="col-8 mt-3">
         <%= form_with model: @address, local: true do |f| %>
         <table>
             <%= f.hidden_field :customer_id, :value => current_customer.id %>
@@ -16,20 +16,22 @@
             <tr class="form-group">
               <td><%= label :name,"宛名" %></td>
               <td><%= f.text_field :name, class:"form-control" %></td> 
-              <td><%= f.submit "新規登録", class: 'btn btn-success'%></td>
+              <td><%= f.submit "新規登録", class: 'btn btn-success ml-5'%></td>
             </tr>
         </table>
         <%end%>
         </div>
 
     </div>
-    <div class="row">
-        <table>
+    <div class="row mt-5">
+        <table class="table">
             <thead>
-                <th>郵便番号</th>
-                <th>住所</th>
-                <th>宛名</th>
-                <th colspan="2"></th>
+                <th scope="col">郵便番号</th>
+                <th scope="col">住所</th>
+                <th scope="col">宛名</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                
             </thead>
             <tbody>
                 <% @addresses.each do |address| %>
@@ -38,9 +40,9 @@
                     <td><%= address.location %></td>
                     <td><%= address.name %></td>
                     <td>
-                        <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-success" %>
+                        <%= link_to "編集する", edit_address_path(address.id), class:"btn  btn-sm btn-success" %>
                     </td>
-                    <td><%= link_to "削除する", address, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></td>
+                    <td ><%= link_to "削除する", address, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger ml-3" %></td>
                 </tr>
                 <%end%>
             </tbody>
