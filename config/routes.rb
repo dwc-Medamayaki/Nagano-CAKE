@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
 
     resources :addresses, except: [:new, :show]
+    
+    get "search" => "searches#search"
+
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
