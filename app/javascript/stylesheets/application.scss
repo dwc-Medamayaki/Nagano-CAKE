@@ -1,2 +1,18 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+
+body{
+  background-color:#f6efdb;
+  font-family: "Sawarabi Mincho";
+}
+.pagination {
+  justify-content: center;
+}
+.item{
+    margin:5% 0;
+}
+
+.subtitle{
+    font-family: 'Corben', cursive;
+}

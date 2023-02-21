@@ -1,34 +1,56 @@
-<h1>商品編集</h1>
-<%= render 'admin/shared/error_messages', resource: @item %>
-<%= form_with model: @item, url: admin_item_path(@item) do |f| %>
-  <div class="form-group">
-    <label for="inputImage">商品画像</label>
-    <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <label for="name">商品名</label>
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <label for="introduction">商品説明</label>
-    <%= f.text_area :introduction, class: 'form-control' %>
-  </div>
-  <p>ジャンル</p>
-  <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "--選択してください--" %>
-  <div class="form-group">
-    <label for="price">税抜価格</label>
-    <%= f.number_field :price, class: 'form-control' %>円
-  </div>
-  <div class="form-group">
-    <p>販売ステータス</p>
-    <%= f.radio_button :is_sale, true %>
-    <%= f.label :is_sale_true, "販売中" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mt-5 mx-auto">
+      <h2>商品編集</h2>
+    </div>
+    <div class="col-md-6 mt-4 mx-auto">
+      <%= render 'admin/shared/error_messages', resource: @item %>
+      <%= form_with model: @item, url: admin_item_path(@item) do |f| %>
+        <form class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-md-3 mt-1", for="inputImage">商品画像</label>
+            <%= f.file_field :image, accept: "image/*" %>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 mt-2", for="name">商品名</label>
+            <div class="col-md-7 px-0">
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 mt-2", for="introduction">商品説明</label>
+            <div class="col-md-7 px-0">
+              <%= f.text_area :introduction, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <p class="col-md-3">ジャンル</p>
+            <div class="col-md-7 px-0">
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "--選択してください--" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 mt-2", for="price">税抜価格</label>
+            <div class="col-md-7 px-0">
+              <%= f.number_field :price, class: 'form-control' %>
+            </div>
+            <span class="mt-2">円</span>
+          </div>
+          <div class="form-group row">
+            <p class="col-md-3">販売ステータス</p>
+            <div class="col-md-7 px-0">
+              <%= f.radio_button :is_sale, true %>
+              <%= f.label :is_sale, "販売中" %>
 
-    <%= f.radio_button :is_sale, false %>
-    <%= f.label :is_sale_false, "販売停止中" %>
+              <%= f.radio_button :is_sale, false %>
+              <%= f.label :is_sale, "販売停止中" %>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <%= f.submit "変更を保存", class:'btn btn-success' %>
+          </div>
+        </form>
+      <% end %>
+    </div>
   </div>
-  <div class="form-group">
-    <%= f.submit "変更を保存", class:'btn btn-success' %>
-  </div>
-
-<% end %>
+</div>

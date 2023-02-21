@@ -1,4 +1,18 @@
-ja:
-  time:
-    formats:
-      default: "%Y/%m/%d"
+  enums:
+    order:
+      status:
+        waiting: "入金待ち"
+        confirm: "入金確認"
+        cooking: "制作中"
+        preparing: "発送準備中"
+        derlivered: "発送済み"
+
+      pay_method:
+        credit_card: "クレジットカード"
+        transfar: "銀行振込"
+    order_item:
+      production_status:
+        cannot_start: "着手不可"
+        wait_cooking: "制作待ち"
+        cooking: "制作中"
+        finished: "制作完了"
