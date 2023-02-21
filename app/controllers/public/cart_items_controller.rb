@@ -46,7 +46,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
-    if current_user.cart_items.destroy_all
+    if current_customer.cart_items.destroy_all
     redirect_to cart_items_path
     else
       render "index"
