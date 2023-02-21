@@ -58,8 +58,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def show
-    @total= 'total_payment'+'postage'
-    @item_total= 'price'*'quantity'
+    @order= Order.find(params[:id])
+    @order.postage = 800
+    @total_price= @order.order_items
   end
 
   private
