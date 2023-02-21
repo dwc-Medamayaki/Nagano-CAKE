@@ -2,7 +2,7 @@
 <div class="container">
     <h2>ジャンル一覧・追加</h2>
     <div class="row">
-        <%= form_with model:@genre, local:true do |f| %>
+        <%= form_with model: @genre, local:true do |f| %>
          <table>
             <td>
               <div class="form-group">
@@ -18,7 +18,7 @@
          </table>
         <%end%>
     </div>
-    
+
     <div class="row">
         <div class="col-3">
             <%= render 'genres', genres: @genres %>

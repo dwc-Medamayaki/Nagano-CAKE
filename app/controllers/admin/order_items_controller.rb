@@ -1,11 +1,9 @@
-class Admin::OrdersController < ApplicationController
-  def show
-    @order = Order.find(params[:id])
-  end
+class Admin::OrderItemsController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    if @order.update(order_params)
+    @order_item = OrderItem.find(params[:id])
+    if @order_item.update(update_params)
       redirect_to admin_order_path(@order), notice: "更新に成功しました"
     else
       redirect_back(fallback_location: root_path)
@@ -14,7 +12,7 @@ class Admin::OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:status)
+  def update_params
+    params.require(:order_item).permit(:production_status)
   end
 end
