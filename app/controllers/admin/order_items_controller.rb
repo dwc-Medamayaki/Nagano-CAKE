@@ -1,10 +1,9 @@
 class Admin::OrderItemsController < ApplicationController
 
   def update
-    @order = Order.find(params[:id])
     @order_item = OrderItem.find(params[:id])
     if @order_item.update(update_params)
-      redirect_to admin_order_path(@order), notice: "更新に成功しました"
+      redirect_to admin_order_path(@order_item.order_id), notice: "更新に成功しました"
     else
       redirect_back(fallback_location: root_path)
     end

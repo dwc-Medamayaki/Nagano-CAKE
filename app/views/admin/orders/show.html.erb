@@ -35,7 +35,7 @@
           </p>
         </div>
         <div class="d-flex">
-          <%= form_with model: @order_items, url: admin_order_item_path(@order.order_items), method: :patch do |f| %>
+
             <table class="table mt-2 mr-4 mb-1 border-bottom">
               <thead>
                 <tr>
@@ -48,23 +48,25 @@
                 </tr>
               </thead>
               <tbody>
-                <% @order.order_items.each do |item| %>
+                <% @order.order_items.each do |order_item| %>
                   <tr>
-                    <td><%= item.item.name %></td>
-                    <td><%= item.item.tax_price %></td>
-                    <td><%= item.quantity %></td>
-                    <td><%= (item.item.tax_price * item.quantity).to_s(:delimited) %></td>
+                    <td><%= order_item.item.name %></td>
+                    <td><%= order_item.item.tax_price %></td>
+                    <td><%= order_item.quantity %></td>
+                    <td><%= (order_item.item.tax_price * order_item.quantity).to_s(:delimited) %></td>
+                  <%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch do |f| %>
                     <td>
                       <%= f.select :production_status, OrderItem.production_statuses_i18n.invert %>
                     </td>
                     <td>
                       <%= f.submit "更新", class: 'btn btn-success' %>
                     </td>
+                  <% end %>
                   </tr>
                 <% end %>
               </tbody>
             </table>
-          <% end %>
+
           <!--右に各種金額-->
           <div class="d-flex align-items-end">
             <div class="row">
