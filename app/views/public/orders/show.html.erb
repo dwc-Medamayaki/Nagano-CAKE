@@ -25,7 +25,7 @@
                 </tr>
             </table>
         </div>
-        <div class="col-5">
+        <div class="col-5 mt-5">
             <h5>請求情報</h5>
             <table class="table">
                 <tr>
@@ -56,9 +56,9 @@
                     <% @order.order_items.each do |order| %>
                     <tr>
                         <td><%= order.item.name %></td>
-                        <td><%= order.price %></td>
-                        <td><%= order.quantity %></td>
-                        <td><%= order.item_total_price %></td>
+                        <td><%= order.price %>円</td>
+                        <td><%= order.quantity %>個</td>
+                        <td><%= order.item_total_price %>円</td>
                     </tr>
                   <%end%>
                 </tbody>

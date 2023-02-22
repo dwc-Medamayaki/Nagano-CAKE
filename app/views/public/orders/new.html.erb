@@ -1,44 +1,39 @@
 <div class="container ml-5">
   <h2 class="mt-5">注文情報入力</h2>
   <div class="row">
-      <div class="col-6 mx-auto">
+      <div class="col-8 mx-auto">
        <%= form_with model: @order, url: orders_confirm_path, method: :get do |f| %>
-      <div class="row">
       <p class="col-md-3">支払方法</p>
-    </div>
     <div class="row">
       <div class="field col-md-9 ml-3" >
-        <%= f.radio_button :pay_method, "credit_card" %>
-        <%= f.label :pay_method, "クレジットカード" %><br>
-        <%= f.radio_button :pay_method, "transfar" %>
-        <%= f.label :pay_method, "銀行振込" %>
+        　<%= f.radio_button :pay_method, "credit_card" %>
+          <%= f.label :pay_method, "クレジットカード" %><br>
+        　<%= f.radio_button :pay_method, "transfar" %>
+          <%= f.label :pay_method, "銀行振込" %>
       </div>
     </div>
 
-    <div class="row">
+    <div class="row mx-auto">
       <p class="col-md-3">お届け先</p>
-    </div>
-    <div class="row">
-      <div class="field col-md-9 ml-3" >
+      <div class="field col-md-10 ml-3" >
         
         <%= f.radio_button :address_option, 0, checked: true %>
         ご自身の住所<br>
-        <%= current_customer.post_code %><br>
-        <%= current_customer.address %><br>
-        <%= current_customer.full_name %><br>
+        　<%= current_customer.post_code %><%= current_customer.address %><br>
+        　<%= current_customer.full_name %><br>
         
         <%= f.radio_button :address_option, 1 %>
         <%= f.label :registered_address, "登録済住所から選択" %><br>
-        <%= f.collection_select :registered_address , current_customer.addresses, :id, :view_postcode_and_address_and_name, :include_blank => "選択してください" %><br>
+        　<%= f.collection_select :registered_address , current_customer.addresses, :id, :view_postcode_and_address_and_name, :include_blank => "選択してください", size: 50 %><br>
         
         <%= f.radio_button :address_option, 2 %>
         <%= f.label :order_address, "新しいお届け先" %><br>
-        <%= f.label :send_post_code, "郵便番号" %>
-        <%= f.text_field :send_post_code %><br>
-        <%= f.label :send_address, "住所　　" %>
-        <%= f.text_field :send_address %><br>
-        <%= f.label :send_name, "宛名　　" %>
-        <%= f.text_field :send_name %>
+        　<%= f.label :send_post_code, "郵便番号" %>
+        　<%= f.text_field :send_post_code %><br>
+        　<%= f.label :send_address, "住所　　" %>
+        　<%= f.text_field :send_address, size: 40 %><br>
+        　<%= f.label :send_name, "宛名　　" %>
+        　<%= f.text_field :send_name %>
       </div>
     </div>
       
