@@ -1,7 +1,7 @@
 <div class="container ml-5">
-  <h1>注文情報入力</h1>
+  <h1 class="mt-5">注文情報入力</h1>
   <div class="row">
-    <table>
+    <table class="table">
       <thead>
         <tr>
           <th>商品名</th>
@@ -25,33 +25,38 @@
         <% end %>
       </tbody>
     </table>
-    <table>
-      <thead>
+    <div class="col-6">
+      <table class="table">
         <tr>
-          <th>送料</th>
-          <th><%= @order.postage %></th>
+          <td>送料</td>
+          <td><%= @order.postage %>円</td>
         </tr>
-      </thead>
-      <tbody>
         <tr>
           <td>商品合計</td>
-          <td><%= @order.total_payment.to_s(:delimited) %></td>
+          <td><%= @order.total_payment.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <td>請求金額</td>
-          <td><%= (@order.total_payment + @order.postage).to_s(:delimited) %></td>
+          <td><%= (@order.total_payment + @order.postage).to_s(:delimited) %>円</td>
         </tr>
-      </tbody>
+    </table>
+    </div>
+    
+  </div>
+  <div class="col-4">
+    <table class="table">
+     <tr>
+       <td><p>お支払方法</p></td>
+       <td><%= @order.pay_method_i18n %></td>
+      </tr>
+      <tr>
+       <td><p>お届け先</p></td>
+       <td><%= @order.view_postcode_and_address_and_name %></td>
+      </tr>
     </table>
   </div>
-  <div class="row">
-    <p>お支払方法</p>
-    <%= @order.pay_method_i18n %>
-  </div>
-  <div class="row">
-    <p>お届け先</p>
-    <%= @order.view_postcode_and_address_and_name %>
-  </div>
+  
+  
   <%= form_with model: @order, url: orders_path do |f| %>
     <%= f.hidden_field :send_post_code, :value => @order.send_post_code %>
     <%= f.hidden_field :send_address, :value => @order.send_address %>

@@ -21,7 +21,7 @@
           <ul class="navbar-nav ml-auto ol-5">
             <% if customer_signed_in? %>
               <li class="nav-item text-light">
-                ようこそ<%= current_customer.full_name %>さん！
+               <p>ようこそ <%= current_customer.full_name %>さん！</p>
               </li>
               <li class="nav-item">
                 <%= link_to my_page_path,class: 'nav-link text-light' do %>

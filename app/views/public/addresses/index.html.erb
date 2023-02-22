@@ -7,15 +7,15 @@
             <%= f.hidden_field :customer_id, :value => current_customer.id %>
             <tr class="form-group">
                 <td><%= label :post_code,"郵便番号(ハイフンなし)" %></td>
-                <td><%= f.text_field :post_code, class:"form-control" %></td>
+                <td><%= f.text_field :post_code %></td>
             </tr>
             <tr class="form-group">
               <td><%= label :location,"住所" %></td>
-              <td><%= f.text_field :location, class:"form-control" %></td>  
+              <td><%= f.text_field :location, size: 40 %></td>  
             </tr>
             <tr class="form-group">
               <td><%= label :name,"宛名" %></td>
-              <td><%= f.text_field :name, class:"form-control" %></td> 
+              <td><%= f.text_field :name %></td> 
               <td><%= f.submit "新規登録", class: 'btn btn-success ml-5'%></td>
             </tr>
         </table>
