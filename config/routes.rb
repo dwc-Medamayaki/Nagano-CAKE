@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
     resources :genres, only: [:index, :create, :edit, :update]
 
-    resources :customers, only: [:index, :show, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update] do
+      get "customer_index" => "orders#customer_index"  
+    end
 
     resources :orders, only: [:show, :update]
 
