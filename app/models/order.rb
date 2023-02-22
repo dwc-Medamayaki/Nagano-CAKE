@@ -8,5 +8,12 @@ class Order < ApplicationRecord
   def view_postcode_and_address_and_name
     "〒 " + self.send_post_code + " " + self.send_address + " " + self.send_name
   end
-
+  
+  def total_pay
+    total_payment+postage
+  end 
+  
+  def item_total_price(order_items)
+    price*quantity
+  end
 end

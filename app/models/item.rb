@@ -21,4 +21,8 @@ class Item < ApplicationRecord
     (self.price * 1.10).round
   end
 
+  def self.looks(word)
+    Item.where("name LIKE?","%#{word}%")
+  end
+  
 end

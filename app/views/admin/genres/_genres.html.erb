@@ -1,4 +1,4 @@
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
       <th>ジャンル</th>
@@ -8,6 +8,9 @@
     <% genres.each do |genre| %>
        <tr>
          <td><%= genre.name %></td>
+         <% if admin_signed_in? %>
+         <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-success btn-sm" %></td>
+         <%end%>
        </tr>
     <%end%>  
   </tbody>
