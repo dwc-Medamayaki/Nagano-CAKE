@@ -17,3 +17,9 @@ ja:
         wait_cooking: "制作待ち"
         cooking: "制作中"
         finished: "制作完了"
+
+ ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y/%m/%d"

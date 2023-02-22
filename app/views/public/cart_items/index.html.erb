@@ -20,7 +20,7 @@
         <% @cart_items.each do |item| %>
           <tr>
             <td>
-              <%= image_tag cart_item.item.get_image, size:'120x78' %>
+              <%= image_tag item.item.get_image, size:'120x78' %>
               <%= item.item.name %>
             </td>
             <td><%= item.item.tax_price %></td>
@@ -43,7 +43,7 @@
     </table>
   </div> 
   <div class="row">
-    <%= link_to "買い物を続ける", root_path , class: "btn btn-primary"%>
+    <%= link_to "買い物を続ける", root_path , class: "btn btn-primary mb-4" %>
     <table class='table'>
       <thead><tr><td></td><td></td></tr></thead>
       <tbody>

@@ -1,18 +1,18 @@
 <div class="search">
   <!--ジャンル検索機能をここに-->
 </div>
-<div class="item">
+<div class="item col-4 mx-auto">
   <div class="image">
     <%= image_tag @item.get_image, size: '300x200' %>
   </div>
-  <div class="status">
+  <div class="status mt-3">
     <b><%= @item.name %></b>
     <%= @item.introduction %>
     <br>
     <b>¥<%= @item.tax_price.to_s(:delimited) %></b><small><small>（税込）</small></small>
   </div>
     <% if @item.is_sale? %>
-      <div class="add_cart">
+      <div class="add_cart mt-3">
         <%= form_with model: @cart_item, url: cart_items_path do |f| %>
           <%= f.hidden_field :item_id, :value => @item.id %>
           <%= f.hidden_field :customer_id, :value => current_customer.id %>

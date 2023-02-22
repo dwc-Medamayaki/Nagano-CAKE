@@ -9,4 +9,14 @@ class Order < ApplicationRecord
     "〒 " + self.send_post_code + " " + self.send_address + " " + self.send_name
   end
   
+  def total_pay
+    total_payment+postage
+  end 
+  
+  def item_total_price(order_items)
+    price*quantity
+  end
+  
+  
+  
 end

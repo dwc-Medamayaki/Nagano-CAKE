@@ -20,5 +20,6 @@ class Item < ApplicationRecord
   def tax_price
     (self.price * 1.10).round
   end
-
+  
+  
 end
