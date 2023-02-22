@@ -8,9 +8,11 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:index, :show, :edit, :update]
 
+    resources :order_items, only: [:update]
+
     resources :orders, only: [:show, :update]
 
-    resources :order_items, only: [:update]
+
   end
 
   scope module: :public do
@@ -24,10 +26,10 @@ Rails.application.routes.draw do
     patch '/customers/information' => 'customers#update'
     get '/customers/unsubscribe' => 'customers#unsubscribe'
     patch '/customers/is_deleted' => 'customers#is_deleted'
-    
+
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items, only: [:index, :update, :create, :destroy]
-    
+
     get '/orders/confirm' => 'orders#confirm'
     get '/orders/complete' => 'orders#complete'
     resources :orders, only: [:new, :create, :index, :show]
