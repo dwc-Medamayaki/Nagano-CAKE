@@ -13,10 +13,10 @@ class Customer < ApplicationRecord
     validates :last_name
     validates :first_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/} #,#message: 'はカタカナで入力して下さい。'
     validates :last_name_kana, format: { with: /\A[\p{katakana}\p{blank}ー－]+\z/} #,#message: 'はカタカナで入力して下さい。'
-    validates :post_code
+    validates :post_code, numericality: {only_integer: true} 
     validates :address
-    validates :telephone_number
-    validates :email
+    validates :telephone_number, numericality: {only_integer: true}
+    validates :email, uniqueness: true
     validates :encrypted_password
   end
   
