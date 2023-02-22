@@ -1,8 +1,8 @@
 class Public::CustomersController < ApplicationController
-   before_action :set_customer
+  before_action :authenticate_customer!
+  before_action :set_customer
   
   def show
-    @customer= current_customer
   end
 
   def edit
