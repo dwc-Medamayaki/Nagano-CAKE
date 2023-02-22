@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   def new
     @order = Order.new
   end
-  
+
   def confirm
     @order = Order.new
     @order.postage = 800
@@ -27,7 +27,7 @@ class Public::OrdersController < ApplicationController
       @order.send_address = params[:order][:send_address]
       @order.send_name = params[:order][:send_name]
     end
-    
+
   end
 
   def create
@@ -54,14 +54,14 @@ class Public::OrdersController < ApplicationController
 
   def index
     @orders= Order.all
-    
+
   end
 
   def show
     @total= 'total_payment'+'postage'
     @item_total= 'price'*'quantity'
   end
-  
+
   private
 
     def order_params
