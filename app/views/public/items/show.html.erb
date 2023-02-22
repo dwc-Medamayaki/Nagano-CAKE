@@ -1,28 +1,32 @@
-<div class="search">
-  <%= render '/public/homes/genre_search.html',genres: @genres %>
-</div>
-<div class="item col-4 mx-auto">
-  <div class="image">
-    <%= image_tag @item.get_image, size: '300x200' %>
-  </div>
-  <div class="status mt-3">
-    <b><%= @item.name %></b>
-    <%= @item.introduction %>
-    <br>
-    <b>¥<%= @item.tax_price.to_s(:delimited) %></b><small><small>（税込）</small></small>
-  </div>
-    <% if customer_signed_in? %>
-      <% if @item.is_sale? %>
-        <div class="add_cart mt-3">
-          <%= form_with model: @cart_item, url: cart_items_path do |f| %>
-            <%= f.hidden_field :item_id, :value => @item.id %>
-            <%= f.hidden_field :customer_id, :value => current_customer.id %>
-            <%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'], :include_blank =>'　個数選択　' %>
-            <%= f.submit "カートに入れる", class:'btn btn-success' %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="search col-2">
+      <%= render '/public/homes/genre_search.html',genres: @genres %>
+    </div>
+    <div class="item col-10 mx-auto">
+      <div class="image">
+        <%= image_tag @item.get_image, size: '300x200' %>
+      </div>
+      <div class="status mt-3">
+        <b><%= @item.name %></b>
+        <%= @item.introduction %>
+        <br>
+        <b>¥<%= @item.tax_price.to_s(:delimited) %></b><small><small>（税込）</small></small>
+      </div>
+        <% if customer_signed_in? %>
+          <% if @item.is_sale? %>
+            <div class="add_cart mt-3">
+              <%= form_with model: @cart_item, url: cart_items_path do |f| %>
+                <%= f.hidden_field :item_id, :value => @item.id %>
+                <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                <%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'], :include_blank =>'　個数選択　' %>
+                <%= f.submit "カートに入れる", class:'btn btn-success' %>
+              <% end %>
+          <% else %>
+            <P class="text-light btn btn-danger">売り切れ</P>
           <% end %>
-      <% else %>
-        <P class="text-light btn btn-danger">売り切れ</P>
-      <% end %>
-    <% end %>        
+        <% end %>        
+      </div>
+    </div>
   </div>
 </div>
