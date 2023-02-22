@@ -10,8 +10,7 @@ class Order < ApplicationRecord
     validates :send_address
     validates :send_name
   end
-  
-  
+ 
   def view_postcode_and_address_and_name
     "〒 " + self.send_post_code + " " + self.send_address + " " + self.send_name
   end
@@ -23,7 +22,4 @@ class Order < ApplicationRecord
   def item_total_price(order_items)
     price*quantity
   end
-  
-  
-  
 end

@@ -17,15 +17,19 @@ class Public::OrdersController < ApplicationController
 
     elsif params[:order][:address_option] == "1"
       @selected_address = params[:order][:registered_address]
+      if @selected_address.empty?
+       redirect_to new_order_path 
+      else
       @order_address = Address.find(@selected_address)
       @order.send_post_code = @order_address.post_code
       @order.send_address = @order_address.location
       @order.send_name = @order_address.name
-
+      end
     elsif params[:order][:address_option] == "2"
       @order.send_post_code = params[:order][:send_post_code]
       @order.send_address = params[:order][:send_address]
       @order.send_name = params[:order][:send_name]
+      redirect_to new_order_path if @order.send_name.empty? || @order.send_post_code.empty? || @order.send_address.empty?
     end
 
   end
@@ -70,4 +74,3 @@ class Public::OrdersController < ApplicationController
     end
 
 end
-
