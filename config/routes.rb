@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
 
     resources :order_items, only: [:update]
+    
+    get "search" => "searches#search"
+    
   end
 
   scope module: :public do
@@ -33,6 +36,14 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :create, :index, :show]
 
     resources :addresses, except: [:new, :show]
+
+    get "search" => "searches#search"
+
+    resources :genres, only: :index do
+      get "search_genre" => "searches#search_genre", module: :genres
+    end
+
+
   end
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
