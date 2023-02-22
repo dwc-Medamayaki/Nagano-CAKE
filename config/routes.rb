@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
 
     resources :customers, only: [:index, :show, :edit, :update] do
-      get "customer_index" => "orders#customer_index"  
+      get "customer_index" => "orders#customer_index"
     end
 
     resources :order_items, only: [:update]
@@ -15,9 +15,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
 
     resources :order_items, only: [:update]
-    
+
     get "search" => "searches#search"
-    
+
   end
 
   scope module: :public do
