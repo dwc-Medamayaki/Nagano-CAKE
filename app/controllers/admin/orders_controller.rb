@@ -13,7 +13,11 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
-
+  def customer_index
+    @customer = Customer.find(params[:customer_id])
+    @orders = Order.where(customer_id: params[:customer_id])
+    @orders = @orders.page(params[:page]).per(10)
+  end
 
   private
 
@@ -21,10 +25,6 @@ class Admin::OrdersController < ApplicationController
     params.require(:order).permit(:status)
   end
   
-  def customer_index
-    @customer = Customer.find(params[:customer_id])
-    @orders = Order.where(customer_id: params[:customer_id])
-    @orders = @orders.page(params[:page]).per(10)
-  end
+
   
 end
