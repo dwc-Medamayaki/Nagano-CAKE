@@ -2,8 +2,21 @@ class Admin::OrderItemsController < ApplicationController
 
   def update
     @order_item = OrderItem.find(params[:id])
+    @order = @order_item.order
+    @order_items = @order.order_items.all
+    is_complete = true
     if @order_item.update(update_params)
-      redirect_to admin_order_path(@order_item.order_id), notice: "更新に成功しました"
+      if @order_item.production_status == "cooking"
+        @order.status = "cooking"
+        @order.save
+      end
+        @order_items.each do |order_item|
+        if order_item.production_status != "finished"
+          is_complete = false
+        end
+      end
+        @order.update(status: 3) if is_complete
+        redirect_to admin_order_path(@order_item.order_id), notice: "更新に成功しました"
     else
       redirect_back(fallback_location: root_path)
     end
