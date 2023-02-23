@@ -17,7 +17,7 @@
          </p>
        </div>
      </div>
-     
+
      <h2 class="mt-5">新着商品</h2>
       <div class="row">
         <% @new_item.each do |item| %>
@@ -31,16 +31,16 @@
           </div>
         <% end %>
       </div>
-      
+
     </div >
       </div class="row text-right ">
        <div class="offset-9 col-3 mt-5">
-        <%= link_to items_path do %>
-         すべての商品を見る>
+        <%= link_to items_path, class: 'text-reset', style: "text-decoration: underline" do %>
+         すべての商品を見る >
         <% end %>
        </div>
       </div>
-      
+
     </div>
   </div>
 </div>
