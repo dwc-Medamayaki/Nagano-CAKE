@@ -1,36 +1,36 @@
 <div class="container">
-    <h2 class="col-6 mt-5 mx-auto">注文履歴一覧</h2>
-    <div class="col-10 mt-3 mx-auto">
-        <table class="table table-hover">
-            <thead>
-                <th scope="col">注文日</th>
-                <th scope="col", colspan="3">配送先</th>
-                <th scope="col">注文商品</th>
-                <th scope="col">支払金額</th>
-                <th scope="col">ステータス</th>
-                <th scope="col">注文詳細</th>
-            </thead>
-            <tbody>
-                <% @orders.each do |order| %>
-                <tr>
-                    
-                    <td><%= l order.created_at, format: :short %></td>
-                    <td colspan="3">
-                         〒<%= order.send_post_code %></br>
-                         <%= order.send_address%></br>
-                         <%= order.send_name %>
-                    </td>
-                    <td>
-                        <% order.order_items.each do |order_item| %>
-                         <%= order_item.item.name %>
-                        <%end%>
-                    </td>
-                    <td><%= order.total_pay %>円</td>
-                    <td><%= order.status_i18n %></td>
-                    <td><%= link_to "表示する", order_path(order), class: "btn btn-sm btn-success" %></td>
-                </tr>
-                <%end%>
-            </tbody>
-        </table>
-    </div>
+  <h2 class="col-6 mt-5 mx-auto">注文履歴一覧</h2>
+  <div class="col-10 mt-3 mx-auto">
+    <table class="table table-hover">
+      <thead>
+        <th scope="col">注文日</th>
+        <th scope="col", colspan="3">配送先</th>
+        <th scope="col">注文商品</th>
+        <th scope="col">支払金額</th>
+        <th scope="col">ステータス</th>
+        <th scope="col">注文詳細</th>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+
+            <td><%= l order.created_at, format: :short %></td>
+            <td colspan="3">
+              〒<%= order.send_post_code %></br>
+              <%= order.send_address%></br>
+              <%= order.send_name %>
+            </td>
+            <td>
+              <% order.order_items.each do |order_item| %>
+                <%= order_item.item.name %>
+              <%end%>
+            </td>
+            <td><%= order.total_pay %>円</td>
+            <td><%= order.status_i18n %></td>
+            <td><%= link_to "表示する", order_path(order), class: "btn btn-sm btn-success" %></td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
 </div>

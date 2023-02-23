@@ -1,68 +1,68 @@
 <div class="container">
-    <h2 class="mt-5">注文履歴詳細</h2>
-    <div class="row">
-        <div class="col-7 mt-5">
-            <h5>注文情報</h5>
-            <table class="table">
-                <tr>
-                    <td>注文日</td>
-                    <td><%= l @order.created_at, format: :short %></td>
-                </tr>
-                <tr>
-                    <td>配送先</td>
-                    <td>〒<%= @order.send_post_code %></br>
-                         <%= @order.send_address%></br>
-                         <%= @order.send_name %>
-                    </td>
-                </tr>
-                <tr>
-                    <td>支払方法</td>
-                    <td><%= @order.pay_method_i18n %></td>
-                </tr>
-                <tr>
-                    <td>ステータス</td>
-                    <td><%= @order.status_i18n %></td>
-                </tr>
-            </table>
-        </div>
-        <div class="col-5 mt-5">
-            <h5>請求情報</h5>
-            <table class="table">
-                <tr>
-                    <td>商品合計</td>
-                    <td><%= @order.total_payment %>円</td>
-                </tr>
-                <tr>
-                    <td>配送料</td>
-                    <td><%= @order.postage %>円</td>
-                </tr>
-                <tr>
-                    <td>ご請求額</td>
-                    <td><%= @order.total_pay %>円</td>
-                </tr>
-            </table>
-        </div>
+  <h2 class="mt-5">注文履歴詳細</h2>
+  <div class="row">
+    <div class="col-7 mt-5">
+      <h5>注文情報</h5>
+      <table class="table">
+        <tr>
+          <td>注文日</td>
+          <td><%= l @order.created_at, format: :short %></td>
+        </tr>
+        <tr>
+          <td>配送先</td>
+          <td>〒<%= @order.send_post_code %></br>
+              <%= @order.send_address%></br>
+              <%= @order.send_name %>
+          </td>
+          </tr>
+          <tr>
+            <td>支払方法</td>
+            <td><%= @order.pay_method_i18n %></td>
+          </tr>
+          <tr>
+            <td>ステータス</td>
+            <td><%= @order.status_i18n %></td>
+          </tr>
+        </table>
     </div>
-    <div class="row">
-        <div class="col-8">
-            <table class="table">
-                <thead>
-                    <th>商品</th>
-                    <th>単価（税込）</th>
-                    <th>個数</th>
-                    <th>小計</th>
-                </thead>
-                <tbody>
-                    <% @order.order_items.each do |order| %>
-                    <tr>
-                        <td><%= order.item.name %></td>
-                        <td><%= order.price %>円</td>
-                        <td><%= order.quantity %>個</td>
-                        <td><%= order.item_total_price %>円</td>
-                    </tr>
-                  <%end%>
-                </tbody>
-            </table>
-        </div>
+    <div class="col-5 mt-5">
+      <h5>請求情報</h5>
+      <table class="table">
+        <tr>
+          <td>商品合計</td>
+          <td><%= @order.total_payment %>円</td>
+        </tr>
+        <tr>
+          <td>配送料</td>
+          <td><%= @order.postage %>円</td>
+        </tr>
+        <tr>
+          <td>ご請求額</td>
+          <td><%= @order.total_pay %>円</td>
+        </tr>
+      </table>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <table class="table">
+        <thead>
+          <th>商品</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </thead>
+        <tbody>
+          <% @order.order_items.each do |order| %>
+            <tr>
+              <td><%= order.item.name %></td>
+              <td><%= order.price %>円</td>
+              <td><%= order.quantity %>個</td>
+              <td><%= order.item_total_price %>円</td>
+            </tr>
+          <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
