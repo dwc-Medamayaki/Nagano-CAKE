@@ -12,15 +12,15 @@
       </thead>
       <tbody>
         <% @cart_items.each do |cart_item| %>
-        <tr>
-          <td>
-            <%= image_tag cart_item.item.get_image, size:'120x78' %>
-            <%= cart_item.item.name %>
-          </td>
-          <td><%= cart_item.item.tax_price %></td>
-          <td><%= cart_item.quantity %></td>
-          <td><%= (cart_item.item.tax_price * cart_item.quantity).to_s(:delimited) %></td>
-        </tr>
+          <tr>
+            <td>
+              <%= image_tag cart_item.item.get_image, size:'120x78' %>
+              <%= cart_item.item.name %>
+            </td>
+            <td><%= cart_item.item.tax_price %></td>
+            <td><%= cart_item.quantity %></td>
+            <td><%= (cart_item.item.tax_price * cart_item.quantity).to_s(:delimited) %></td>
+          </tr>
           <%  @order.total_payment += (cart_item.item.tax_price * cart_item.quantity) %>
         <% end %>
       </tbody>
@@ -39,24 +39,24 @@
           <td>請求金額</td>
           <td><%= (@order.total_payment + @order.postage).to_s(:delimited) %>円</td>
         </tr>
-    </table>
+      </table>
     </div>
-    
+
   </div>
   <div class="col-4">
     <table class="table">
-     <tr>
-       <td><p>お支払方法</p></td>
-       <td><%= @order.pay_method_i18n %></td>
+      <tr>
+        <td><p>お支払方法</p></td>
+        <td><%= @order.pay_method_i18n %></td>
       </tr>
       <tr>
-       <td><p>お届け先</p></td>
-       <td><%= @order.view_postcode_and_address_and_name %></td>
+        <td><p>お届け先</p></td>
+        <td><%= @order.view_postcode_and_address_and_name %></td>
       </tr>
     </table>
   </div>
-  
-  
+
+
   <%= form_with model: @order, url: orders_path do |f| %>
     <%= f.hidden_field :send_post_code, :value => @order.send_post_code %>
     <%= f.hidden_field :send_address, :value => @order.send_address %>
@@ -68,4 +68,4 @@
     <%= f.hidden_field :status, :value => "waiting" %>
     <%= f.submit "注文を確定する", class: "text-light btn btn-success" %>
   <% end %>
-</div> 
+</div>
