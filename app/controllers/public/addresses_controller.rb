@@ -1,7 +1,9 @@
 class Public::AddressesController < ApplicationController
+   before_action :set_address, only: [:edit, :update, :destroy]
+  
+  
   def index
     @addresses = Address.where(customer_id: current_customer)
-    
     @address = Address.new
   end
   
@@ -13,11 +15,9 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.find(params[:id])
   end
   
   def update
-    @address = Address.find(params[:id])
     if @address.update(address_params)
       redirect_to addresses_path, notice: "変更に成功しました"
     else
@@ -26,17 +26,18 @@ class Public::AddressesController < ApplicationController
   end
   
   def destroy
-    @address= Address.find(params[:id])
      @address.destroy
     redirect_to addresses_path
   end
   
   private
   
-  def address_params
-      params.require(:address).permit(:customer_id,:post_code,:location,:name) 
+  def set_address
+    @address = Address.find(params[:id])
   end
   
-#
+  def address_params
+    params.require(:address).permit(:customer_id,:post_code,:location,:name) 
+  end
   
 end
