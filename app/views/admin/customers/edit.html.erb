@@ -4,7 +4,7 @@
       <h2>会員情報編集</h2>
     </div>
     <div class="col-md-6 mt-4 mx-auto">
-      <%= form_with model: @customer, url: customers_information_path do |f| %>
+      <%= form_with model: @customer, url: admin_customer_path(@customer.id) do |f| %>
         <form class="form-horizontal">
           <div class="form-group row">
             <p class="col-md-2 mt-1">会員ID</p>

@@ -21,7 +21,7 @@ class Public::CustomersController < ApplicationController
 
   def is_deleted
     if @customer.update(customer_params)
-      redirect_to root_path, notice: "You are deleted successfully."
+      sign_out_and_redirect(current_customer)
     else
       render "unsubscribe"
     end
