@@ -7,7 +7,7 @@
         <tbody>
         <% genres.each do |item_genre| %>
         <tr>
-          <td><%= link_to item_genre.name, genre_search_genre_path(item_genre.id) %></td>
+          <td><%= link_to item_genre.name, genre_search_genre_path(item_genre.id), class: 'text-reset', style: "text-decoration: underline" %></td>
         </tr>
       <% end %>
         </tbody>
