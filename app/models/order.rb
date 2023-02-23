@@ -22,4 +22,5 @@ class Order < ApplicationRecord
   def item_total_price(order_items)
     price*quantity
   end
+  
 end

@@ -8,8 +8,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.update(order_params)
       if @order.status == "confirm"
-        @order_items = @order.order_items.all
-        @order_items.each do |order_item|
+        @order.order_items.each do |order_item|
           order_item.production_status = "wait_cooking"
           order_item.save
         end
